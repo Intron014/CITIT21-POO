@@ -76,21 +76,19 @@ public class TicTacToe {
 
     public static int[] alphaBetaMax(int alpha, int beta) {
         int[] result = new int[3];
-        if (checkWin('X')) {
-            result[0] = 1;
-            return result;
-        } else if (checkWin('O')) {
-            result[0] = -1;
-            return result;
-        } else if (isBoardFull()) {
-            result[0] = 0;
-            return result;
-        }
         result[0] = Integer.MIN_VALUE;
+
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 if (board[i][j] == ' ') {
                     board[i][j] = 'X';
+                    if (checkWin('X')) {
+                        result[0] = 1; // Indicamos que es el ganador
+                        result[1] = i;
+                        result[2] = j;
+                        board[i][j] = ' ';
+                        return result;
+                    }
                     int[] temp = alphaBetaMin(alpha, beta);
                     if (temp[0] > result[0]) {
                         result[0] = temp[0];
@@ -110,21 +108,19 @@ public class TicTacToe {
 
     public static int[] alphaBetaMin(int alpha, int beta) {
         int[] result = new int[3];
-        if (checkWin('X')) {
-            result[0] = 1;
-            return result;
-        } else if (checkWin('O')) {
-            result[0] = -1;
-            return result;
-        } else if (isBoardFull()) {
-            result[0] = 0;
-            return result;
-        }
-        result[0] = Integer.MAX_VALUE;
+        result[0] = Integer.MAX_VALUE; // Initialize the result to positive infinity
+
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 if (board[i][j] == ' ') {
                     board[i][j] = 'O';
+                    if (checkWin('O')) {
+                        result[0] = -1; // Indicamos que es el ganador
+                        result[1] = i;
+                        result[2] = j;
+                        board[i][j] = ' ';
+                        return result;
+                    }
                     int[] temp = alphaBetaMax(alpha, beta);
                     if (temp[0] < result[0]) {
                         result[0] = temp[0];
@@ -142,9 +138,9 @@ public class TicTacToe {
         return result;
     }
 
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        initializeBoard();
         char answer = ' ';
         System.out.println("Wanna play against the AI? (y/n)");
         while (answer != 'y' && answer != 'n') {
@@ -158,14 +154,33 @@ public class TicTacToe {
             }
         }
         if (answer == 'y') {
-            printBoard();
-            while (!gameOver) {
-                if (currentPlayer == 'X') {
-                    System.out.println("Player " + currentPlayer + ", enter row and column (e.g., 1 2): ");
-                    int row = scanner.nextInt() - 1;
-                    int col = scanner.nextInt() - 1;
-                    if (isMoveValid(row, col)) {
-                        makeMove(row, col);
+            do {
+                initializeBoard();
+                gameOver = false;
+                printBoard();
+                while (!gameOver) {
+                    if (currentPlayer == 'X') {
+                        System.out.println("Player " + currentPlayer + ", enter row and column (e.g., 1 2): ");
+                        int row = scanner.nextInt() - 1;
+                        int col = scanner.nextInt() - 1;
+                        if (isMoveValid(row, col)) {
+                            makeMove(row, col);
+                            if (checkWin(currentPlayer)) {
+                                System.out.println("Player " + currentPlayer + " wins!");
+                                gameOver = true;
+                            } else if (isBoardFull()) {
+                                System.out.println("It's a tie!");
+                                gameOver = true;
+                            }
+                            changePlayer();
+                        } else {
+                            System.out.println("Invalid move!");
+                        }
+                    } else {
+                        System.out.println("Player " + currentPlayer + " is thinking...");
+                        int[] result = alphaBetaSearch();
+                        makeMove(result[0], result[1]);
+                        printBoard();
                         if (checkWin(currentPlayer)) {
                             System.out.println("Player " + currentPlayer + " wins!");
                             gameOver = true;
@@ -174,25 +189,13 @@ public class TicTacToe {
                             gameOver = true;
                         }
                         changePlayer();
-                    } else {
-                        System.out.println("Invalid move!");
                     }
-                } else {
-                    System.out.println("Player " + currentPlayer + " is thinking...");
-                    int[] result = alphaBetaSearch();
-                    makeMove(result[0], result[1]);
-                    printBoard();
-                    if (checkWin(currentPlayer)) {
-                        System.out.println("Player " + currentPlayer + " wins!");
-                        gameOver = true;
-                    } else if (isBoardFull()) {
-                        System.out.println("It's a tie!");
-                        gameOver = true;
-                    }
-                    changePlayer();
                 }
-            }
+                System.out.println("Wanna play again? (y/n)");
+                answer = scanner.next().charAt(0);
+            } while (answer == 'y');
         } else {
+            initializeBoard();
             while (!gameOver) {
                 printBoard();
                 System.out.println("Player " + currentPlayer + ", enter row and column (e.g., 1 2): ");
