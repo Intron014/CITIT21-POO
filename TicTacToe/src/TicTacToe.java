@@ -81,9 +81,9 @@ public class TicTacToe {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 if (board[i][j] == ' ') {
-                    board[i][j] = 'X';
-                    if (checkWin('X')) {
-                        result[0] = 1; // Indicamos que es el ganador
+                    board[i][j] = 'O';
+                    if (isBoardFull() || checkWin('O')) {
+                        result[0] = checkWin('O') ? 1 : 0; // Indicamos que es el ganador
                         result[1] = i;
                         result[2] = j;
                         board[i][j] = ' ';
@@ -92,14 +92,14 @@ public class TicTacToe {
                     int[] temp = alphaBetaMin(alpha, beta);
                     if (temp[0] > result[0]) {
                         result[0] = temp[0];
-                        result[1] = i;
-                        result[2] = j;
+                        result[1] = temp[1];
+                        result[2] = temp[2];
                     }
                     board[i][j] = ' ';
-                    if (result[0] >= beta) {
-                        return result;
-                    }
-                    alpha = Math.max(alpha, result[0]);
+                    //if (result[0] >= beta) {
+                    //    return result;
+                    //}
+                    //alpha = Math.max(alpha, result[0]);
                 }
             }
         }
@@ -113,9 +113,9 @@ public class TicTacToe {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 if (board[i][j] == ' ') {
-                    board[i][j] = 'O';
-                    if (checkWin('O')) {
-                        result[0] = -1; // Indicamos que es el ganador
+                    board[i][j] = 'X';
+                    if (isBoardFull() || checkWin('X')) {
+                        result[0] = checkWin('X') ? -1 : 0; // Indicamos que es el ganador
                         result[1] = i;
                         result[2] = j;
                         board[i][j] = ' ';
@@ -124,14 +124,14 @@ public class TicTacToe {
                     int[] temp = alphaBetaMax(alpha, beta);
                     if (temp[0] < result[0]) {
                         result[0] = temp[0];
-                        result[1] = i;
-                        result[2] = j;
+                        result[1] = temp[1];
+                        result[2] = temp[2];
                     }
                     board[i][j] = ' ';
-                    if (result[0] <= alpha) {
-                        return result;
-                    }
-                    beta = Math.min(beta, result[0]);
+                    //if (result[0] <= alpha) {
+                    //    return result;
+                    //}
+                    //beta = Math.min(beta, result[0]);
                 }
             }
         }
