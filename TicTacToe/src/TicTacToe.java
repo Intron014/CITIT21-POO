@@ -86,14 +86,16 @@ public class TicTacToe {
                         result[0] = checkWin('O') ? 1 : 0; // Indicamos que es el ganador
                         result[1] = i;
                         result[2] = j;
-                        board[i][j] = ' ';
-                        return result;
+                        // board[i][j] = ' ';
+                        // return result;
                     }
-                    int[] temp = alphaBetaMin(alpha, beta);
-                    if (temp[0] > result[0]) {
-                        result[0] = temp[0];
-                        result[1] = temp[1];
-                        result[2] = temp[2];
+                    else {
+                        int[] temp = alphaBetaMin(alpha, beta);
+                        if (temp[0] > result[0]) {
+                            result[0] = temp[0];
+                            result[1] = i;
+                            result[2] = j;
+                        }
                     }
                     board[i][j] = ' ';
                     //if (result[0] >= beta) {
@@ -118,14 +120,16 @@ public class TicTacToe {
                         result[0] = checkWin('X') ? -1 : 0; // Indicamos que es el ganador
                         result[1] = i;
                         result[2] = j;
-                        board[i][j] = ' ';
-                        return result;
+                        // board[i][j] = ' ';
+                        // return result;
                     }
-                    int[] temp = alphaBetaMax(alpha, beta);
-                    if (temp[0] < result[0]) {
-                        result[0] = temp[0];
-                        result[1] = temp[1];
-                        result[2] = temp[2];
+                    else {
+                        int[] temp = alphaBetaMax(alpha, beta);
+                        if (temp[0] < result[0]) {
+                            result[0] = temp[0];
+                            result[1] = i;
+                            result[2] = j;
+                        }
                     }
                     board[i][j] = ' ';
                     //if (result[0] <= alpha) {
