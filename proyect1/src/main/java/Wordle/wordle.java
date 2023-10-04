@@ -14,6 +14,7 @@ public class wordle {
     public void random_palabra_in_dictionary(){
         int random = (int) (Math.random() * 2316);
         String palabra = dic.get_word(random);
+        // System.out.println(palabra);
         for(int i=0; i<5; i++){
             this.palabra[i] = palabra.charAt(i);
         }
@@ -42,10 +43,13 @@ public class wordle {
     public static void main(String[] args){
         try {
             char[] uword = new char[5];
+            boolean win = false;
+            int wincnt;
             wordle w = new wordle();
             w.random_palabra_in_dictionary();
             System.out.println("Bienvenido a Wordle\n+: Letra correcta\n*: Letra en palabra\n-: Letra incorrecta\n");
-            for(int cnt=0; cnt<6; cnt++) {
+
+            for(int cnt=0; cnt<6 && !win; cnt++) {
                 String word;
                 Boolean exists = true;
                 do {
@@ -69,11 +73,20 @@ public class wordle {
                     System.out.print(" " + uword[i] + " ");
                 }
                 System.out.println();
+                wincnt = 0;
                 for (int i = 0; i < 5; i++) {
                     System.out.print(" " + result[i] + " ");
+                    if(result[i]=='+'){
+                        wincnt++;
+                    }
+                }
+                if(wincnt==5){
+                    win = true;
+                    System.out.println("\nHas ganado!");
                 }
                 System.out.println();
             }
+            if(!win)
             System.out.println("\nLa palabra era: " + w.palabra[0] + w.palabra[1] + w.palabra[2] + w.palabra[3] + w.palabra[4]);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
