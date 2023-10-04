@@ -1,3 +1,4 @@
+package TicTacToe;
 import java.util.Scanner;
 public class TicTacToe {
     private static final int BOARD_SIZE = 3;
@@ -14,7 +15,7 @@ public class TicTacToe {
     }
 
     public static void printBoard() {
-        System.out.println("   1  2  3  ");
+        System.out.println("   1  2  3");
         for (int i = 0; i < BOARD_SIZE; i++) {
             System.out.print(i + 1 + " ");
             for (int j = 0; j < BOARD_SIZE; j++) {
@@ -47,6 +48,7 @@ public class TicTacToe {
         if (board[0][2] == currentPlayer && board[1][1] == currentPlayer && board[2][0] == currentPlayer) {
             return true;
         }
+
         return false;
     }
 
