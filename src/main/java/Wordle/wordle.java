@@ -87,7 +87,7 @@ public class wordle {
                 System.out.println();
             }
             if(!win)
-            System.out.println("\nLa palabra era: " + w.palabra[0] + w.palabra[1] + w.palabra[2] + w.palabra[3] + w.palabra[4]);
+                System.out.println("\nLa palabra era: " + w.palabra[0] + w.palabra[1] + w.palabra[2] + w.palabra[3] + w.palabra[4]);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
