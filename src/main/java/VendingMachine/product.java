@@ -14,4 +14,8 @@ public class product {
         this.brand = brand;
         this.barcode = barcode;
     }
+
+    public String getName(){
+        return this.name;
+    }
 }

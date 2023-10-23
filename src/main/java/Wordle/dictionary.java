@@ -62,7 +62,7 @@ public class dictionary {
     }
 
     public void init_dictionary() throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream("/home/intron014/UPM/CITIT21-POO/proyect1/src/main/java/Wordle/dictionary.txt");
+        FileInputStream fis = new FileInputStream("/home/intron014/UPM/CITIT21-POO/src/main/java/Wordle/dictionary.txt");
         Scanner sc = new Scanner(fis);
         while(sc.hasNextLine()){
             String line = sc.nextLine();
