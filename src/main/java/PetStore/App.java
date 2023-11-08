@@ -1,4 +1,4 @@
-package pet_store.modelo;
+package PetStore;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -25,6 +25,7 @@ public class App {
         String[] splittedCommand = rawCommand.split(COMMAND_TOKEN);
         String order = splittedCommand[COMMAND_POS];
         String[] arguments = splittedCommand[ARGUMENT_POS].split(ARGUMENT_TOKEN);
+        command.put(order, arguments);
         return command;
     }
 }

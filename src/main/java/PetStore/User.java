@@ -1,4 +1,4 @@
-package pet_store.modelo;
+package PetStore;
 
 public class User {
     private String email;

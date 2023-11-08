@@ -1,4 +1,4 @@
-package pet_store.modelo;
+package PetStore;
 
 public class Pet{
     private String name;
