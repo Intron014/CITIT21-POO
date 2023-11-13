@@ -1,15 +1,16 @@
-package PetWalkerManager;
+package PetWalkerManager.model;
 
 import java.time.LocalTime;
+import java.time.Duration;
 
 public class Stroll {
     private LocalTime time;
-    private int duration;
+    private Duration duration;
 
     public Stroll(){
 
     }
-    public Stroll(LocalTime time, int duration) {
+    public Stroll(LocalTime time, Duration duration) {
         this.time = time;
         this.duration = duration;
     }
@@ -22,11 +23,11 @@ public class Stroll {
         this.time = time;
     }
 
-    public int getDuration() {
+    public Duration getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Duration duration) {
         this.duration = duration;
     }
 }

@@ -1,4 +1,4 @@
-package PetWalkerManager;
+package PetWalkerManager.model;
 
 public enum Breeds {
     PastorAleman,

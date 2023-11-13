@@ -1,4 +1,4 @@
-package PetWalkerManager;
+package PetWalkerManager.model;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,7 +16,11 @@ public class App {
         String cmd = null;
         do {
             Map<String, String[]> command = processCommand();
-            // String[] argss = command.get("patata");
+            if(command.containsKey("login")){
+                String[] argum = command.get("login");
+            } else if(command.containsKey("register")){
+                String[] argum = command.get("register");
+            } else if()
         } while (cmd!=null);
     }
 
@@ -31,4 +35,5 @@ public class App {
         return command;
 
     }
+
 }
