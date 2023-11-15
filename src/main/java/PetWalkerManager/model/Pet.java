@@ -29,4 +29,10 @@ public class Pet {
     public void setBreed(Breeds breed) {
         this.breed = breed;
     }
+
+    public String toString(){
+        return name + "," + breed + "\n";
+    }
+
+
 }

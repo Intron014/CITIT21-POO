@@ -20,7 +20,7 @@ public class App {
                 String[] argum = command.get("login");
             } else if(command.containsKey("register")){
                 String[] argum = command.get("register");
-            } else if()
+            }
         } while (cmd!=null);
     }
 
