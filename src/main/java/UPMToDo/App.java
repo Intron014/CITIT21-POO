@@ -1,6 +1,7 @@
 package UPMToDo;
 
+import UPMToDo.controller.UserController;
+
 public class App {
-    private static UserController userController = new UserController();
 
 }

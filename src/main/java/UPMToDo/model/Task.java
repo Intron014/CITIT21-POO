@@ -1,4 +1,4 @@
-package UPMToDo;
+package UPMToDo.model;
 
 import java.time.LocalDate;
 
