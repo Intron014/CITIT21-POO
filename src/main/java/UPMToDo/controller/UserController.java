@@ -54,6 +54,7 @@ public class UserController {
             }
         } catch (Exception e){
             result = e.getMessage();
+            return result;
         }
         try{
             User usernow = users.fetch(args[0], args[1]);
@@ -63,6 +64,7 @@ public class UserController {
             currentUser = usernow;
         } catch (Exception e){
             result = e.getMessage();
+            return result;
         }
         result = "User " + currentUser.getUsername() + " logged in";
         return result;
@@ -74,22 +76,33 @@ public class UserController {
             isLoggedIn();
         } catch (Exception e){
             result = e.getMessage();
+            return result;
         }
         result = "User " + currentUser.getUsername() + " logged out, BYE BYE D:";
         currentUser = null;
         return result;
     }
 
-    public String addTask(String[] args){
+    public String addTask(String[] args) {
         String result = "";
-        try{
-            if(args.length < 1){
+        Task tasker = null;
+        try {
+            if (args.length < 2) {
                 throw new Exception("Invalid number of arguments");
-            }isLoggedIn();
-        } catch (Exception e){
+            }
+            if(currentUser == null){
+                throw new Exception("User not logged in");
+            }
+        } catch (Exception e) {
             result = e.getMessage();
+            return result;
         }
-        Task tasker = new Task(args[0], LocalDate.parse(args[1]));
+        try{
+            tasker = new Task(args[0], LocalDate.parse(args[1]));
+        } catch (Exception e) {
+            result = e.getMessage();
+            return result;
+        }
         currentUser.addTask(tasker);
         return result;
     }
@@ -115,6 +128,7 @@ public class UserController {
             isLoggedIn();
         } catch (Exception e) {
             result = e.getMessage();
+            return result;
         }
         List<Task> tasks = currentUser.getTasks();
         Task deltask = null;
@@ -136,6 +150,7 @@ public class UserController {
             isLoggedIn();
         } catch (Exception e){
             result = e.getMessage();
+            return result;
         }
         List<Task> tasks = currentUser.getTasks();
         for(Task task : tasks){
@@ -148,9 +163,9 @@ public class UserController {
         return result;
     }
 
-    private void isLoggedIn() throws NotLoggedInException{
+    private void isLoggedIn() throws Exception{
         if(currentUser == null){
-            throw new NotLoggedInException();
+            throw new Exception("User not logged in");
         }
     }
 }
