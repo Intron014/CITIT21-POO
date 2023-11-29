@@ -49,4 +49,5 @@ public class Task {
     public void setInitDate(LocalDate initDate) {
         this.initDate = initDate;
     }
+
 }

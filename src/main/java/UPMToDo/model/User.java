@@ -9,15 +9,13 @@ public class User {
     private String password;
     private String email;
     private String bio;
-    private LocalDate birthDate;
     private List<Task> tasks;
 
-    public User(String username, String password, String email, LocalDate birthDate) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.birthDate = birthDate;
-        this.tasks = new ArrayList<>();
+        this.tasks = new ArrayList<Task>();
     }
 
     public String getUsername() {
@@ -52,11 +50,14 @@ public class User {
         this.bio = bio;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    public void addTask(Task task){
+        tasks.add(task);
+    }
+    public void removeTask(Task task){
+        tasks.remove(task);
+    }
+    public List<Task> getTasks(){
+        return tasks;
     }
 }
