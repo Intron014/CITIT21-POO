@@ -26,6 +26,25 @@ public class Agency {
         }
         return nearby;
     }
+    public List<Advertisement> find5CheapestHousesWithTax(String city) {
+        List<Advertisement> cheapest = new ArrayList<>();
+        for (Advertisement advertisement : advertisements) {
+            if (advertisement.getCity().equals(city)) {
+                if (cheapest.size() < 5) {
+                    cheapest.add(advertisement);
+                } else {
+                    for (Advertisement ad : cheapest) {
+                        if (getTaxedPrice(ad) > getTaxedPrice(advertisement)) {
+                            cheapest.remove(ad);
+                            cheapest.add(advertisement);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return cheapest;
+    }
 
     private double distanciaKm(double lat1, double lon1, double lat2,
                                double lon2) {
