@@ -1,20 +1,21 @@
 package MojoDojoCasaHouse.model;
 
-public class Home {
+import MojoDojoCasaHouse.enums.HomeType;
+
+public class House {
     private float latitude;
     private float longitude;
     private String address;
     private int num;
-    private String door;
-    private int floor;
+    private HomeType homeType;
 
-    public Home(float latitude, float longitude, String address, int num, String door, int floor) {
+
+    public House(float latitude, float longitude, String address, int num){
         this.latitude = latitude;
         this.longitude = longitude;
         this.address = address;
         this.num = num;
-        this.door = door;
-        this.floor = floor;
+        this.homeType = HomeType.UNIFAMILIAR;
     }
 
     public float getLatitude() {
@@ -49,19 +50,11 @@ public class Home {
         this.num = num;
     }
 
-    public String getDoor() {
-        return door;
+    public HomeType getHomeType() {
+        return homeType;
     }
 
-    public void setDoor(String door) {
-        this.door = door;
-    }
-
-    public int getFloor() {
-        return floor;
-    }
-
-    public void setFloor(int floor) {
-        this.floor = floor;
+    public void setHomeType(HomeType homeType) {
+        this.homeType = homeType;
     }
 }

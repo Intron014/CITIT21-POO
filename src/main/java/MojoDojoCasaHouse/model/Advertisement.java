@@ -4,12 +4,12 @@ import MojoDojoCasaHouse.enums.AdType;
 
 public class Advertisement {
     private AdType adType;
-    private Home home;
+    private House home;
     private String city;
     private String description;
     private float price;
 
-    public Advertisement(AdType adType, Home home, String city, String description, float price) {
+    public Advertisement(AdType adType, House home, String city, String description, float price) {
         this.adType = adType;
         this.home = home;
         this.city = city;
@@ -25,11 +25,11 @@ public class Advertisement {
         this.adType = adType;
     }
 
-    public Home getHome() {
+    public House getHome() {
         return home;
     }
 
-    public void setHome(Home home) {
+    public void setHome(House home) {
         this.home = home;
     }
 

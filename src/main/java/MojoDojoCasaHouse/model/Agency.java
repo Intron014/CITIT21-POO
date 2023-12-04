@@ -14,7 +14,7 @@ public class Agency {
         List<Advertisement> nearby = new ArrayList<>();
         for (Advertisement advertisement : advertisements) {
             if (advertisement.getCity().equals(city)) {
-                Home home = advertisement.getHome();
+                House home = advertisement.getHome();
                 double distancia = distanciaKm(latitude, longitude, home.getLatitude(), home.getLongitude());
                 if (distancia <= radius) {
                     nearby.add(advertisement);
