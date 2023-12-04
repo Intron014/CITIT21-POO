@@ -1,11 +1,14 @@
 package MojoDojoCasaHouse.model;
 
+import MojoDojoCasaHouse.TaxAdder;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Agency {
 
     private List<Advertisement> advertisements;
+    private TaxAdder taxAdder;
 
     public Agency() {
         this.advertisements = new ArrayList<>();
@@ -49,4 +52,9 @@ public class Agency {
     public void setAdvertisements(List<Advertisement> advertisements) {
         this.advertisements = advertisements;
     }
+
+    public float getTaxedPrice(Advertisement advertisement){
+        return taxAdder.getLeTax(advertisement);
+    }
+
 }

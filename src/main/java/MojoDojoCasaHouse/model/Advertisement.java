@@ -1,5 +1,6 @@
 package MojoDojoCasaHouse.model;
 
+import MojoDojoCasaHouse.TaxAdder;
 import MojoDojoCasaHouse.enums.AdType;
 
 public class Advertisement {
@@ -50,6 +51,7 @@ public class Advertisement {
     }
 
     public float getPrice() {
+
         return price;
     }
 
